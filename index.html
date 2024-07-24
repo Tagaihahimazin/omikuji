@@ -9,17 +9,85 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
+            background: #e0d0ba url('panda_omikuji.PNG') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
         }
-        .result {
-            font-size: 24px;
+
+        @media (max-width: 768px) {
+            body {
+                background-size: 100% auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+            body {
+                background-size: auto 100%;
+            }
+        }
+
+        .bubble {
+            position: relative;
+            display: inline-block;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 80%;
+            color: black;
+            text-shadow: none;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
+        }
+
+        .bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 20px 20px 0;
+            border-style: solid;
+            border-color: white transparent;
+            display: block;
+            width: 0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .retry-button {
+            display: none;
             margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff9800;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .retry-button:hover {
+            background-color: #e68900;
         }
     </style>
 </head>
 <body>
-    <h1>おみくじを引く</h1>
-    <button onclick="drawOmikuji()">おみくじを引く</button>
-    <div class="result" id="result"></div>
+    <div class="bubble" id="messageBox">おはよう！パンダだよ</div>
+    <div class="button-container">
+        <button class="retry-button" id="retryButton" onclick="retry()">もう一度引く</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
