@@ -8,7 +8,6 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
             background: #e0d0ba url('panda_omikuji.PNG') no-repeat center center fixed;
             background-size: cover;
             color: white;
@@ -18,18 +17,6 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                background-size: 100% auto;
-            }
-        }
-
-        @media (min-width: 769px) {
-            body {
-                background-size: auto 100%;
-            }
         }
 
         .curtain {
@@ -140,6 +127,8 @@
             navigator.serviceWorker.register('/coi-serviceworker.js')
                 .then((reg) => {
                     console.log('Service worker registered.', reg);
+                }).catch((error) => {
+                    console.error('Service worker registration failed:', error);
                 });
         }
     </script>
