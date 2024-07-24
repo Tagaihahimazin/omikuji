@@ -27,6 +27,7 @@ window.onload = function() {
 
     window.start = function() {
         const backgroundMusic = document.getElementById('backgroundMusic');
+        backgroundMusic.volume = 0.01; // 音量を50%に設定
         backgroundMusic.play().then(() => {
             document.getElementById('curtain').classList.add('curtain-up');
             setTimeout(() => {
