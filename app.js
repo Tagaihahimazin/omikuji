@@ -1,5 +1,6 @@
 window.onload = function() {
     const omikujiResults = ["大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶"];
+    let isMusicPlaying = false;
 
     function drawOmikuji() {
         const resultIndex = Math.floor(Math.random() * omikujiResults.length);
@@ -27,8 +28,21 @@ window.onload = function() {
 
     window.start = function() {
         const backgroundMusic = document.getElementById('backgroundMusic');
-        backgroundMusic.volume = 0.01; // 音量を50%に設定
-        backgroundMusic.play().then(() => {
+        backgroundMusic.volume = 0.01; // 音量を1%に設定
+        if (!isMusicPlaying) {
+            backgroundMusic.play().then(() => {
+                isMusicPlaying = true;
+                document.getElementById('curtain').classList.add('curtain-up');
+                setTimeout(() => {
+                    document.getElementById('curtain').style.display = 'none';
+                    document.getElementById('messageBox').style.display = 'block';
+                    document.querySelector('.button-container').style.display = 'flex';
+                    drawOmikuji();
+                }, 2000);
+            }).catch(error => {
+                console.error("音楽の再生に失敗しました:", error);
+            });
+        } else {
             document.getElementById('curtain').classList.add('curtain-up');
             setTimeout(() => {
                 document.getElementById('curtain').style.display = 'none';
@@ -36,9 +50,7 @@ window.onload = function() {
                 document.querySelector('.button-container').style.display = 'flex';
                 drawOmikuji();
             }, 2000);
-        }).catch(error => {
-            console.error("音楽の再生に失敗しました:", error);
-        });
+        }
     };
 
     window.retry = function() {
